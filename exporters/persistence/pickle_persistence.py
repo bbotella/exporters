@@ -16,7 +16,7 @@ class PicklePersistence(BasePersistence):
             Path to store the pickle file
     """
     supported_options = {
-        'file_path': {'type': six.string_types, 'default': '.'}
+        'file_path': {'type': six.string_types, 'default': os.getcwd()}
     }
 
     uri_regex = "pickle:(([a-zA-Z\d-]|\/)+)"
@@ -36,7 +36,7 @@ class PicklePersistence(BasePersistence):
                     self.persistence_state_id, self._get_persistence_file_name())
             )
 
-        persistence_file = open(self._get_persistence_file_name(), 'r')
+        persistence_file = open(self._get_persistence_file_name(), 'rb')
         persistence_object = pickle.load(persistence_file)
         persistence_file.close()
         self.last_position = persistence_object['last_position']
@@ -49,7 +49,7 @@ class PicklePersistence(BasePersistence):
             'last_position': self.last_position,
             'configuration': str(self.configuration)
         }
-        with open(self._get_persistence_file_name(), 'w') as persistence_file:
+        with open(self._get_persistence_file_name(), 'wb') as persistence_file:
             pickle.dump(persistence_object, persistence_file)
         self.logger.debug('Commited batch number ' + str(self.last_position) + ' of job: ' +
                           self.persistence_state_id)
@@ -63,7 +63,7 @@ class PicklePersistence(BasePersistence):
             'last_position': None,
             'configuration': str(self.configuration)
         }
-        with open(self._get_persistence_file_name(), 'w') as persistence_file:
+        with open(self._get_persistence_file_name(), 'wb') as persistence_file:
             pickle.dump(persistence_object, persistence_file)
 
         self.logger.debug('Created persistence pickle file in ' +

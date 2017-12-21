@@ -63,7 +63,7 @@ class S3ReaderTest(unittest.TestCase):
         for key_name in VALID_KEYS:
             key = bucket.new_key(key_name)
             out = StringIO.StringIO()
-            with gzip.GzipFile(fileobj=out, mode='w') as f:
+            with gzip.GzipFile(fileobj=out, mode='wb') as f:
                 f.write(json.dumps({'name': key_name}))
             key.set_contents_from_string(out.getvalue())
             key.close()
@@ -355,7 +355,7 @@ class TestS3BucketKeysFetcher(unittest.TestCase):
         for key_name in POINTER_KEYS:
             key = bucket.new_key(key_name)
             out = StringIO.StringIO()
-            with gzip.GzipFile(fileobj=out, mode='w') as f:
+            with gzip.GzipFile(fileobj=out, mode='wb') as f:
                 f.write(json.dumps({'name': key_name}))
             key.set_contents_from_string(out.getvalue())
             key.close()

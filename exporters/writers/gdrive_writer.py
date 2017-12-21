@@ -36,11 +36,11 @@ class GDriveWriter(FilebaseBaseWriter):
         gauth = GoogleAuth()
         files_tmp_path = tempfile.mkdtemp()
         client_secret_file = os.path.join(files_tmp_path, 'secret.json')
-        with open(client_secret_file, 'w') as f:
+        with open(client_secret_file, 'wb') as f:
             f.write(json.dumps(self.read_option('client_secret')))
         gauth.LoadClientConfigFile(client_secret_file)
         credentials_file = os.path.join(files_tmp_path, 'credentials.json')
-        with open(credentials_file, 'w') as f:
+        with open(credentials_file, 'wb') as f:
             f.write(json.dumps(self.read_option('credentials')))
         gauth.LoadCredentialsFile(credentials_file)
         shutil.rmtree(files_tmp_path)

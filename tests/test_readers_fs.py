@@ -156,8 +156,8 @@ class FSReaderTest(object):
 
 @pytest.fixture
 def tmpdir_with_dotfiles(tmpdir):
-    with GzipFile(tmpdir.join('.foo.jl.gz').strpath, 'w') as zf:
+    with GzipFile(tmpdir.join('.foo.jl.gz').strpath, 'wb') as zf:
         zf.write('{"foo": 1}')
-    with GzipFile(tmpdir.join('bar.jl.gz').strpath, 'w') as zf:
+    with GzipFile(tmpdir.join('bar.jl.gz').strpath, 'wb') as zf:
         zf.write('{"bar": 1}')
     return tmpdir

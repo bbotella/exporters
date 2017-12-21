@@ -98,7 +98,7 @@ class S3WriterTest(unittest.TestCase):
         writer = S3Writer(options, meta())
         try:
             with TmpFile() as tmp_filename:
-                with open(tmp_filename, 'w') as f:
+                with open(tmp_filename, 'wb') as f:
                     f.truncate(1000)
                 writer._upload_large_file(tmp_filename, 'tests/0.jl.gz')
         finally:

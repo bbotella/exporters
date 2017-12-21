@@ -261,7 +261,7 @@ class BaseExportManagerTest(unittest.TestCase):
                     'last_key': 3
                 },
             }
-            pickle.dump(persistence_data, open(pickle_file, 'w'))
+            pickle.dump(persistence_data, open(pickle_file, 'wb'))
 
             config = self.build_config(
                 exporter_options={

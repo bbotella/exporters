@@ -49,7 +49,7 @@ class DropboxWriter(FilebaseBaseWriter):
 
     def _write_file(self, dump_path, group_key, file_name=None):
         filebase_path, file_name = self.create_filebase_name(group_key, file_name=file_name)
-        with open(dump_path, 'r') as f:
+        with open(dump_path, 'rb') as f:
             self._upload_file(f, '{}/{}'.format(filebase_path, file_name))
         self.get_metadata('files_counter')[filebase_path] += 1
 

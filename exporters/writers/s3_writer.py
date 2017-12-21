@@ -135,7 +135,7 @@ class S3Writer(FilebaseBaseWriter):
         if md5:
             metadata['md5'] = md5
         else:
-            with open(dump_path, 'r') as f:
+            with open(dump_path, 'rb') as f:
                 metadata['md5'] = compute_md5(f)
         return metadata
 
@@ -151,7 +151,7 @@ class S3Writer(FilebaseBaseWriter):
                     'so we could not add metadata info')
 
     def _upload_small_file(self, dump_path, key_name):
-        with closing(self.bucket.new_key(key_name)) as key, open(dump_path, 'r') as f:
+        with closing(self.bucket.new_key(key_name)) as key, open(dump_path, 'rb') as f:
             buffer_info = self.write_buffer.get_metadata(dump_path)
             md5 = key.get_md5_from_hexdigest(buffer_info['file_hash'])
             if self.save_metadata:

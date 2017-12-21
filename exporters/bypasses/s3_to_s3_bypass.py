@@ -111,7 +111,7 @@ class S3Bypass(BaseS3Bypass):
             user_id = dest_bucket.connection.get_canonical_user_id()
             with key_permissions(user_id, key):
                 dest_bucket.copy_key(dest_key_name, source_bucket.name, key_name)
-        except S3ResponseError, e:
+        except S3ResponseError as e:
             self.logger.warning('No direct copy supported for key {}.'.format(key_name))
             self.logger.warning("Message: %s, Error code: %s, Reason: %s, Status: %s, Body: %s",
                                 e.message,

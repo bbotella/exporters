@@ -109,6 +109,6 @@ def create_s3_keys(bucket, key_names):
     for key_name in key_names:
         with closing(bucket.new_key(key_name)) as key:
             out = StringIO.StringIO()
-            with gzip.GzipFile(fileobj=out, mode='w') as f:
+            with gzip.GzipFile(fileobj=out, mode='wb') as f:
                 f.write(json.dumps({'name': key_name}))
             key.set_contents_from_string(out.getvalue())

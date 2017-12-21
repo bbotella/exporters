@@ -114,7 +114,7 @@ class S3BypassTest(unittest.TestCase):
         ]
         with closing(self.source_bucket.new_key('some_prefix/test_key')) as key:
             with TmpFile() as tmp_filename:
-                with open(tmp_filename, 'w') as f:
+                with open(tmp_filename, 'wb') as f:
                     f.write(json.dumps(self.data))
                 with open(tmp_filename) as f:
                     self.key_md5 = compute_md5(f)

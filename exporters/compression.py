@@ -18,7 +18,7 @@ class StreamZipFile(object):
     def close(self):
         self.tmp_file.close()
         filename = os.path.basename(self.tmp_filename)
-        with zipfile.ZipFile(self.path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+        with zipfile.ZipFile(self.path, 'wb', zipfile.ZIP_DEFLATED) as zip_file:
             zip_file.write(self.tmp_filename, arcname=filename)
 
 

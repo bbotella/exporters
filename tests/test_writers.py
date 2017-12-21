@@ -513,7 +513,7 @@ class FSWriterTest(unittest.TestCase):
         self.assertTrue(expected_file in writer.written_files)
 
         written = []
-        with gzip.open(expected_file, 'r') as fin:
+        with gzip.open(expected_file, 'rb') as fin:
             for line in fin:
                 written.append(json.loads(line))
         self.assertEqual(written, self.get_batch())
@@ -553,7 +553,7 @@ class FSWriterTest(unittest.TestCase):
         self.assertTrue(expected_file in writer.written_files)
 
         written = []
-        with bz2.BZ2File(expected_file, 'r') as fin:
+        with bz2.BZ2File(expected_file, 'rb') as fin:
             for line in fin:
                 written.append(json.loads(line))
         self.assertEqual(written, self.get_batch())
@@ -572,7 +572,7 @@ class FSWriterTest(unittest.TestCase):
         self.assertTrue(expected_file in writer.written_files)
 
         written = []
-        with open(expected_file, 'r') as fin:
+        with open(expected_file, 'rb') as fin:
             for line in fin:
                 written.append(json.loads(line))
         self.assertEqual(written, self.get_batch())
@@ -624,7 +624,7 @@ class FSWriterTest(unittest.TestCase):
         # Consistency check passes
         writer.finish_writing()
 
-        with open(os.path.join(self.tmp_dir, 'exporter_test0000.jl.gz'), 'w'):
+        with open(os.path.join(self.tmp_dir, 'exporter_test0000.jl.gz'), 'wb'):
             with self.assertRaisesRegexp(InconsistentWriteState, 'Wrong size for file'):
                 writer.finish_writing()
 

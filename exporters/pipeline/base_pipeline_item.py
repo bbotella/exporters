@@ -25,7 +25,7 @@ class BasePipelineItem(object):
         self.metadata = metadata
 
     def check_options(self):
-        for option_name, option_spec in self.supported_options.iteritems():
+        for option_name, option_spec in self.supported_options.items():
             option_value = maybe_cast_list(self.read_option(option_name), option_spec['type'])
             if option_value and not isinstance(option_value, option_spec['type']):
                 raise ConfigurationError('Value for option %s should be of type: %s' %

@@ -2,11 +2,11 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'exporters',
-    version = '0.6.18',
-    description = 'Exporters is an extensible export pipeline library that supports filter, '
+    name = 'fluxo',
+    version = '0.1',
+    description = 'Fluxo is an extensible export pipeline library that supports filter, '
                   'transform and several sources and destinations.',
-    long_description = 'Exporters is an extensible export pipeline library that supports filter, '
+    long_description = 'Fluxo is an extensible export pipeline library that supports filter, '
                        'transform and several sources and destinations. They aim to provide a '
                        'flexible and easy to extend infrastructure for exporting data to and from multiple sources, '
                        'with support for filtering and transformation.',
@@ -15,12 +15,12 @@ setup(
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'License :: OSI Approved :: BSD License',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.6',
     ],
     keywords = 'exporters export data',
-    url = 'https://github.com/scrapinghub/exporters',
-    author = 'Scrapinghub',
-    author_email = 'info@scrapinghub',
+    url = 'https://github.com/bbotella/fluxo',
+    author = 'Bernardo Botella',
+    author_email = 'contaxto@bernardobotella.com',
     license = 'BSD',
     packages = find_packages(exclude=['tests']),
     install_requires = ['six', 'retrying', 'requests', 'PyYAML', 'decorator'],

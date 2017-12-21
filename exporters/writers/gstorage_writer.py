@@ -51,7 +51,7 @@ class GStorageWriter(FilebaseBaseWriter):
         bucket_name = self.read_option('bucket')
         with TemporaryDirectory() as temp_dir:
             credentials_file = os.path.join(temp_dir, 'credentials.json')
-            with open(credentials_file, 'w') as f:
+            with open(credentials_file, 'wb') as f:
                 creds_opt = self.read_option('credentials')
                 if isinstance(creds_opt, six.string_types):
                     package_name, path = creds_opt.split(':')
@@ -76,7 +76,7 @@ class GStorageWriter(FilebaseBaseWriter):
         destination = self._blob_url(self.bucket.name, blob_name)
         self.logger.info('Start uploading {} to {}'.format(dump_path, destination))
 
-        with open(dump_path, 'r') as f:
+        with open(dump_path, 'rb') as f:
             blob = self.bucket.blob(blob_name)
             blob.upload_from_file(f)
 

@@ -46,8 +46,8 @@ class Interpreter(object):
     )
 
     allowed_objects = (
-        str, unicode,  # strings
-        int, float, long, complex,  # numbers
+        str,  # strings
+        int, float, complex,  # numbers
         list, dict, set, tuple,  # sequences
         type(None), bool  # others
     )

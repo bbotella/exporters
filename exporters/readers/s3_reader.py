@@ -1,5 +1,5 @@
 import six
-import httplib
+import http.client
 import re
 import datetime
 from six.moves.urllib.request import urlopen
@@ -17,11 +17,13 @@ def patch_http_response_read(func):
     def inner(*args):
         try:
             return func(*args)
-        except httplib.IncompleteRead, e:
+        except http.client.IncompleteRead as e:
             return e.partial
 
     return inner
-httplib.HTTPResponse.read = patch_http_response_read(httplib.HTTPResponse.read)
+
+
+http.client.HTTPResponse.read = patch_http_response_read(http.client.HTTPResponse.read)
 
 
 def get_bucket(bucket, aws_access_key_id, aws_secret_access_key, **kwargs):

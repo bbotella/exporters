@@ -68,7 +68,7 @@ def split_file(file_path, chunk_size=CHUNK_SIZE):
         if offset >= source_size:
             break
         bytes = min(chunk_size, source_size - offset)
-        fp = FileChunkIO(file_path, 'r', offset=offset, bytes=bytes)
+        fp = FileChunkIO(file_path, 'rb', offset=offset, bytes=bytes)
         chunk = Chunk(fp, offset, bytes, chunk_number+1)
         yield chunk
         chunk_number += 1
